@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-main: #F8FAF7;
+    --text-primary: #111817;
+    --text-muted: #52605D;
+    --accent-lime: #8FE63B;
+    --accent-emerald: #20A85A;
+    --border-light: #E5E9E2;
+    --card-bg: #FFFFFF;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+  }
+
+  body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    selection-background-color: #8FE63B;
+    selection-color: #111817;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv03";
+  }
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F8FAF7;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 9999px;
+  border: 2px solid #F8FAF7;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #20A85A;
+}
+
+/* Glow effects & glassmorphism */
+.glow-lime {
+  box-shadow: 0 0 50px -10px rgba(143, 230, 59, 0.4);
+}
+
+.glow-emerald {
+  box-shadow: 0 0 50px -10px rgba(32, 168, 90, 0.35);
+}
+
+.glass-nav {
+  background: rgba(248, 250, 247, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(229, 233, 226, 0.8);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(229, 233, 226, 0.9);
+}
+
+.text-gradient-green {
+  background: linear-gradient(135deg, #8FE63B 0%, #20A85A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-gradient-green {
+  background: linear-gradient(135deg, #8FE63B 0%, #20A85A 100%);
+}
+
+.bg-radial-glow {
+  background: radial-gradient(circle at 50% 50%, rgba(143, 230, 59, 0.15) 0%, rgba(248, 250, 247, 0) 70%);
+}
+
+/* Animation utilities */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+/* Custom cursor default hide for touch devices */
+@media (pointer: coarse) {
+  .custom-cursor {
+    display: none !important;
+  }
+}
