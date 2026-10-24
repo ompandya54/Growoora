@@ -108,9 +108,32 @@
   animation: spin-slow 20s linear infinite;
 }
 
-/* Custom cursor default hide for touch devices */
-@media (pointer: coarse) {
-  .custom-cursor {
-    display: none !important;
+/* Hero showreel media container aligned with Navbar container across all screen widths */
+.hero-media-container {
+  width: calc(100vw - 3rem);
+  max-width: 1720px;
+}
+
+@media (min-width: 640px) {
+  .hero-media-container {
+    width: calc(100vw - 5rem);
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-media-container {
+    width: calc(100vw - 6rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-media-container {
+    width: calc(100vw - 8rem);
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero-media-container {
+    width: calc(100vw - 10rem);
   }
 }

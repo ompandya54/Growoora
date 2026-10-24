@@ -53,15 +53,11 @@ export default function HeroShowreelSection() {
         0
       );
 
-      // Media wrapper smoothly travels from bottom peek (72vh) to top (0vh),
-      // and padding collapses to 0px, maxWidth expands to 100% (reaching 100vw full width)
+      // Media wrapper smoothly travels from bottom peek (72vh) to top (0vh)
       tl.to(
         mediaWrapperRef.current,
         {
           top: "0vh",
-          paddingLeft: "0px",
-          paddingRight: "0px",
-          maxWidth: "100%",
           y: 0,
           ease: "power2.inOut",
           duration: 0.35,
@@ -73,8 +69,8 @@ export default function HeroShowreelSection() {
       tl.to(
         mediaContainerRef.current,
         {
-          width: "100%",
-          maxWidth: "100%",
+          width: "100vw",
+          maxWidth: "100vw",
           height: "100vh",
           borderRadius: "0px",
           ease: "power2.inOut",
@@ -139,12 +135,23 @@ export default function HeroShowreelSection() {
         0.50
       );
 
+      const getInitialWidth = () => {
+        if (typeof window === "undefined") return "1720px";
+        const w = window.innerWidth;
+        if (w >= 1880) return "1720px";
+        if (w >= 1280) return `${w - 160}px`;
+        if (w >= 1024) return `${w - 128}px`;
+        if (w >= 768) return `${w - 96}px`;
+        if (w >= 640) return `${w - 80}px`;
+        return `${w - 48}px`;
+      };
+
       // Video container shrinks back from full screen to its NORMAL card size & rounded corners
       tl.to(
         mediaContainerRef.current,
         {
-          width: "100%",
-          maxWidth: "100%",
+          width: getInitialWidth(),
+          maxWidth: "1720px",
           height: "52vh",
           borderRadius: "32px",
           ease: "power2.inOut",
@@ -157,9 +164,6 @@ export default function HeroShowreelSection() {
       tl.to(
         mediaWrapperRef.current,
         {
-          paddingLeft: "48px",
-          paddingRight: "48px",
-          maxWidth: "1880px",
           y: "-105vh",
           ease: "power2.inOut",
           duration: 0.35,
@@ -218,11 +222,11 @@ export default function HeroShowreelSection() {
         {/* ==================================================== */}
         <div
           ref={mediaWrapperRef}
-          className="absolute inset-x-0 top-[72vh] w-full max-w-[1880px] mx-auto px-6 sm:px-10 md:px-12 lg:px-16 xl:px-20 flex items-center justify-center z-20 pointer-events-auto will-change-transform"
+          className="absolute inset-x-0 top-[72vh] flex items-center justify-center z-20 pointer-events-auto will-change-transform"
         >
           <div
             ref={mediaContainerRef}
-            className="relative overflow-hidden w-full h-[52vh] sm:h-[58vh] rounded-[28px] sm:rounded-[36px] shadow-2xl will-change-transform"
+            className="hero-media-container relative overflow-hidden h-[52vh] sm:h-[58vh] rounded-[28px] sm:rounded-[36px] shadow-2xl will-change-transform"
           >
             {/* Showreel Visual Asset */}
             <Image
