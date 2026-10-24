@@ -197,11 +197,11 @@ export default function HeroShowreelSection() {
         {/* ==================================================== */}
         <div
           ref={heroHeadingRef}
-          className="relative w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-14 pt-28 sm:pt-32 z-10 pointer-events-none select-none will-change-transform"
+          className="relative w-full max-w-[1880px] mx-auto px-6 sm:px-10 md:px-12 lg:px-16 xl:px-20 pt-28 sm:pt-32 lg:pt-36 z-10 pointer-events-none select-none will-change-transform"
         >
-          <h1 className="text-[11.8vw] sm:text-[9.8vw] md:text-[8.4vw] lg:text-[7.4vw] xl:text-[8.3rem] font-extrabold tracking-[-0.04em] leading-[0.88] text-[#101E16] text-left">
-            <span className="block">Extraordinary</span>
-            <span className="block">Digital Experiences</span>
+          <h1 className="text-[clamp(2.75rem,7.8vw,9.6rem)] font-extrabold tracking-[-0.04em] leading-[0.88] text-[#0F1D07] text-left">
+            <span className="block whitespace-nowrap">Extraordinary</span>
+            <span className="block whitespace-nowrap">Digital Experiences</span>
           </h1>
         </div>
 
