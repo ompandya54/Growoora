@@ -39,7 +39,7 @@ export default function HeroShowreelSection() {
 
       // ========================================================
       // STAGE 1: EXPAND FROM BELOW HEADLINE TO FULL SCREEN
-      // (Scroll progress 0.0 -> 0.36)
+      // (Scroll progress 0.0 -> 0.35)
       // ========================================================
       // Headline scrolls up smoothly and fades out
       tl.to(
@@ -48,6 +48,7 @@ export default function HeroShowreelSection() {
           y: -260,
           opacity: 0,
           ease: "power2.inOut",
+          duration: 0.35,
         },
         0
       );
@@ -59,6 +60,7 @@ export default function HeroShowreelSection() {
           top: "0vh",
           y: 0,
           ease: "power2.inOut",
+          duration: 0.35,
         },
         0
       );
@@ -72,6 +74,7 @@ export default function HeroShowreelSection() {
           height: "100vh",
           borderRadius: "0px",
           ease: "power2.inOut",
+          duration: 0.35,
         },
         0
       );
@@ -83,19 +86,20 @@ export default function HeroShowreelSection() {
           opacity: 0.9,
           scale: 0.95,
           ease: "power1.out",
+          duration: 0.15,
         },
-        0.15
+        0.10
       );
 
       // ========================================================
       // STAGE 2: HOLD FULL SCREEN VIEW
-      // (Scroll progress 0.35 -> 0.48)
+      // (Scroll progress 0.35 -> 0.50)
       // ========================================================
-      tl.to({}, { duration: 0.13 }, 0.35);
+      tl.to({}, { duration: 0.15 }, 0.35);
 
       // ========================================================
-      // STAGE 3: RETURN TO NORMAL SIZE + PURPLE BACKGROUND REVEAL
-      // (Scroll progress 0.48 -> 0.70)
+      // STAGE 3: RETURN TO NORMAL SIZE & FLOAT UP + PURPLE REVEAL
+      // (Scroll progress 0.50 -> 0.85) — EXACT SAME SPEED AS STAGE 1 (0.35)
       // ========================================================
       // Background transitions from warm cream (#F4F3ED) to signature purple (#A282E8)
       tl.to(
@@ -103,9 +107,9 @@ export default function HeroShowreelSection() {
         {
           backgroundColor: "#A282E8",
           ease: "power2.inOut",
-          duration: 0.22,
+          duration: 0.35,
         },
-        0.48
+        0.50
       );
 
       // Media controls & badge fade out smoothly
@@ -115,9 +119,9 @@ export default function HeroShowreelSection() {
           opacity: 0,
           pointerEvents: "none",
           ease: "power1.out",
-          duration: 0.08,
+          duration: 0.10,
         },
-        0.48
+        0.50
       );
 
       tl.to(
@@ -126,9 +130,9 @@ export default function HeroShowreelSection() {
           opacity: 0,
           pointerEvents: "none",
           ease: "power1.out",
-          duration: 0.08,
+          duration: 0.10,
         },
-        0.48
+        0.50
       );
 
       // Video container shrinks back from full screen to its NORMAL card size & rounded corners
@@ -140,24 +144,20 @@ export default function HeroShowreelSection() {
           height: "52vh",
           borderRadius: "32px",
           ease: "power2.inOut",
-          duration: 0.22,
+          duration: 0.35,
         },
-        0.48
+        0.50
       );
 
-      // ========================================================
-      // STAGE 4: NORMAL CARD FLOATS UP + PURPLE SECTION RISES FROM BELOW
-      // (Scroll progress 0.65 -> 0.92)
-      // ========================================================
       // Normal card glides smoothly UP out of the viewport
       tl.to(
         mediaWrapperRef.current,
         {
           y: "-105vh",
           ease: "power2.inOut",
-          duration: 0.27,
+          duration: 0.35,
         },
-        0.65
+        0.50
       );
 
       // Purple showcase section rises smoothly from BELOW the image (y: 100vh -> 0vh)
@@ -170,10 +170,16 @@ export default function HeroShowreelSection() {
         {
           y: "0vh",
           ease: "power2.inOut",
-          duration: 0.27,
+          duration: 0.35,
         },
-        0.65
+        0.50
       );
+
+      // ========================================================
+      // STAGE 4: HOLD PURPLE SHOWCASE VIEW
+      // (Scroll progress 0.85 -> 1.0)
+      // ========================================================
+      tl.to({}, { duration: 0.15 }, 0.85);
     }, trackRef);
 
     return () => ctx.revert();
