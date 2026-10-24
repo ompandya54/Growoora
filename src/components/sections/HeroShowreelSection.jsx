@@ -104,8 +104,14 @@ export default function HeroShowreelSection() {
       );
 
       // ========================================================
-      // STAGE 3: SHRINK & FLOAT UPWARDS + PURPLE BACKGROUND REVEAL
-      // (Scroll progress 0.52 -> 0.82)
+      // STAGE 2: HOLD FULL SCREEN VIEW
+      // (Scroll progress 0.36 -> 0.52)
+      // ========================================================
+      tl.to({}, { duration: 0.16 }, 0.36);
+
+      // ========================================================
+      // STAGE 3: SMOOTH EXIT UPWARDS + PURPLE SECTION RISES FROM BELOW
+      // (Scroll progress 0.52 -> 0.85)
       // ========================================================
       // Background transitions from warm cream (#F4F3ED) to signature purple (#A282E8)
       tl.to(
@@ -113,60 +119,58 @@ export default function HeroShowreelSection() {
         {
           backgroundColor: "#A282E8",
           ease: "power2.inOut",
+          duration: 0.33,
         },
         0.52
       );
 
-      // Media wrapper shrinks and travels upwards with rounded bottom corners
-      tl.to(
-        mediaWrapperRef.current,
-        {
-          y: -1100,
-          scale: 0.85,
-          ease: "power2.inOut",
-        },
-        0.52
-      );
-
-      tl.to(
-        mediaContainerRef.current,
-        {
-          width: "88vw",
-          maxWidth: "1400px",
-          height: "48vh",
-          borderRadius: "36px",
-          ease: "power2.inOut",
-        },
-        0.52
-      );
-
-      // Media controls fade out during transition
+      // Media controls & badge fade out smoothly
       tl.to(
         controlsRef.current,
         {
           opacity: 0,
           pointerEvents: "none",
           ease: "power1.out",
+          duration: 0.10,
         },
-        0.48
+        0.50
       );
 
-      // ========================================================
-      // STAGE 4: PURPLE SHOWCASE SECTION WITH WHITE TYPOGRAPHY
-      // (Scroll progress 0.65 -> 1.0)
-      // ========================================================
+      tl.to(
+        seeShowreelBadgeRef.current,
+        {
+          opacity: 0,
+          pointerEvents: "none",
+          ease: "power1.out",
+          duration: 0.10,
+        },
+        0.50
+      );
+
+      // Image glides smoothly UP out of the viewport
+      tl.to(
+        mediaWrapperRef.current,
+        {
+          y: "-105vh",
+          ease: "power2.inOut",
+          duration: 0.33,
+        },
+        0.52
+      );
+
+      // Purple showcase section enters smoothly from BELOW the image (y: 100vh -> 0vh)
+      // Never overlaps or fades on top of the image!
       tl.fromTo(
         purpleShowcaseRef.current,
         {
-          y: 140,
-          opacity: 0,
+          y: "100vh",
         },
         {
-          y: 0,
-          opacity: 1,
-          ease: "power2.out",
+          y: "0vh",
+          ease: "power2.inOut",
+          duration: 0.33,
         },
-        0.65
+        0.52
       );
     }, trackRef);
 
@@ -272,7 +276,8 @@ export default function HeroShowreelSection() {
         {/* ==================================================== */}
         <div
           ref={purpleShowcaseRef}
-          className="absolute inset-0 z-30 flex flex-col justify-center items-center px-6 sm:px-12 lg:px-20 opacity-0 pointer-events-none will-change-transform"
+          className="absolute inset-0 z-10 flex flex-col justify-center items-center px-6 sm:px-12 lg:px-20 pointer-events-auto will-change-transform"
+          style={{ transform: "translateY(100vh)" }}
         >
           <div className="max-w-6xl w-full mx-auto flex flex-col gap-10 sm:gap-14 pt-20 pointer-events-auto">
             {/* White Headline */}
