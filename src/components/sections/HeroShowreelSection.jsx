@@ -68,6 +68,7 @@ export default function HeroShowreelSection() {
         mediaContainerRef.current,
         {
           width: "100vw",
+          maxWidth: "100vw",
           height: "100vh",
           borderRadius: "0px",
           ease: "power2.inOut",
@@ -94,6 +95,7 @@ export default function HeroShowreelSection() {
         mediaContainerRef.current,
         {
           width: "100vw",
+          maxWidth: "100vw",
           height: "100vh",
           borderRadius: "0px",
           ease: "none",
@@ -130,6 +132,7 @@ export default function HeroShowreelSection() {
         mediaContainerRef.current,
         {
           width: "88vw",
+          maxWidth: "1400px",
           height: "48vh",
           borderRadius: "36px",
           ease: "power2.inOut",
@@ -200,7 +203,7 @@ export default function HeroShowreelSection() {
         >
           <div
             ref={mediaContainerRef}
-            className="relative overflow-hidden w-[90vw] sm:w-[92vw] max-w-7xl h-[52vh] sm:h-[58vh] rounded-[28px] sm:rounded-[36px] shadow-2xl transition-all will-change-transform"
+            className="relative overflow-hidden w-[90vw] sm:w-[92vw] max-w-7xl h-[52vh] sm:h-[58vh] rounded-[28px] sm:rounded-[36px] shadow-2xl will-change-transform"
           >
             {/* Showreel Visual Asset */}
             <Image
