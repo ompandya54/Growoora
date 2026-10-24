@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import LoadingScreen from "@/components/common/LoadingScreen";
 import Navbar from "@/components/common/Navbar";
-import HeroSection from "@/components/sections/HeroSection";
+import HeroShowreelSection from "@/components/sections/HeroShowreelSection";
 import ServicesSection from "@/components/sections/ServicesSection";
 import GrowthEngineSection from "@/components/sections/GrowthEngineSection";
 import ProjectsSection from "@/components/sections/ProjectsSection";
@@ -14,11 +14,17 @@ import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import FinalCTASection from "@/components/sections/FinalCTASection";
 import Footer from "@/components/common/Footer";
 import Lenis from "lenis";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export default function Home() {
   const [loadingComplete, setLoadingComplete] = useState(false);
 
-  // Initialize smooth scroll using Lenis
+  // Initialize smooth scroll using Lenis & synchronize with GSAP ScrollTrigger
   useEffect(() => {
     if (!loadingComplete) return;
 
@@ -26,17 +32,25 @@ export default function Home() {
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      touchMultiplier: 2,
+      touchMultiplier: 1.5,
     });
 
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
+    lenis.on("scroll", ScrollTrigger.update);
 
-    requestAnimationFrame(raf);
+    const updateRaf = (time) => {
+      lenis.raf(time * 1000);
+    };
+
+    gsap.ticker.add(updateRaf);
+    gsap.ticker.lagSmoothing(0);
+
+    const refreshTimer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 250);
 
     return () => {
+      clearTimeout(refreshTimer);
+      gsap.ticker.remove(updateRaf);
       lenis.destroy();
     };
   }, [loadingComplete]);
@@ -47,10 +61,10 @@ export default function Home() {
       <LoadingScreen onComplete={() => setLoadingComplete(true)} />
 
       {/* Main Agency Experience */}
-      <div className="relative flex flex-col min-h-screen bg-[#F8FAF7]">
+      <div className="relative flex flex-col min-h-screen bg-[#F4F3ED]">
         <Navbar />
         <main className="flex-1">
-          <HeroSection />
+          <HeroShowreelSection />
           <ServicesSection />
           <GrowthEngineSection />
           <ProjectsSection />
@@ -65,3 +79,4 @@ export default function Home() {
     </>
   );
 }
+

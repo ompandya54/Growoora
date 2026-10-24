@@ -35,8 +35,12 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       className={`${jakartaSans.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col font-sans bg-[#F8FAF7] text-[#111817] selection:bg-[#8FE63B] selection:text-[#111817]">
+      <body 
+        className="min-h-full flex flex-col font-sans bg-[#F8FAF7] text-[#111817] selection:bg-[#8FE63B] selection:text-[#111817]"
+        suppressHydrationWarning
+      >
         <CustomCursor />
         {children}
       </body>
