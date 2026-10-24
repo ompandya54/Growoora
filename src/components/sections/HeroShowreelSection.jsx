@@ -89,29 +89,13 @@ export default function HeroShowreelSection() {
 
       // ========================================================
       // STAGE 2: HOLD FULL SCREEN VIEW
-      // (Scroll progress 0.36 -> 0.52)
+      // (Scroll progress 0.35 -> 0.48)
       // ========================================================
-      tl.to(
-        mediaContainerRef.current,
-        {
-          width: "100vw",
-          maxWidth: "100vw",
-          height: "100vh",
-          borderRadius: "0px",
-          ease: "none",
-        },
-        0.36
-      );
+      tl.to({}, { duration: 0.13 }, 0.35);
 
       // ========================================================
-      // STAGE 2: HOLD FULL SCREEN VIEW
-      // (Scroll progress 0.36 -> 0.52)
-      // ========================================================
-      tl.to({}, { duration: 0.16 }, 0.36);
-
-      // ========================================================
-      // STAGE 3: SMOOTH EXIT UPWARDS + PURPLE SECTION RISES FROM BELOW
-      // (Scroll progress 0.52 -> 0.85)
+      // STAGE 3: RETURN TO NORMAL SIZE + PURPLE BACKGROUND REVEAL
+      // (Scroll progress 0.48 -> 0.70)
       // ========================================================
       // Background transitions from warm cream (#F4F3ED) to signature purple (#A282E8)
       tl.to(
@@ -119,9 +103,9 @@ export default function HeroShowreelSection() {
         {
           backgroundColor: "#A282E8",
           ease: "power2.inOut",
-          duration: 0.33,
+          duration: 0.22,
         },
-        0.52
+        0.48
       );
 
       // Media controls & badge fade out smoothly
@@ -131,9 +115,9 @@ export default function HeroShowreelSection() {
           opacity: 0,
           pointerEvents: "none",
           ease: "power1.out",
-          duration: 0.10,
+          duration: 0.08,
         },
-        0.50
+        0.48
       );
 
       tl.to(
@@ -142,24 +126,42 @@ export default function HeroShowreelSection() {
           opacity: 0,
           pointerEvents: "none",
           ease: "power1.out",
-          duration: 0.10,
+          duration: 0.08,
         },
-        0.50
+        0.48
       );
 
-      // Image glides smoothly UP out of the viewport
+      // Video container shrinks back from full screen to its NORMAL card size & rounded corners
+      tl.to(
+        mediaContainerRef.current,
+        {
+          width: "90vw",
+          maxWidth: "1280px",
+          height: "52vh",
+          borderRadius: "32px",
+          ease: "power2.inOut",
+          duration: 0.22,
+        },
+        0.48
+      );
+
+      // ========================================================
+      // STAGE 4: NORMAL CARD FLOATS UP + PURPLE SECTION RISES FROM BELOW
+      // (Scroll progress 0.65 -> 0.92)
+      // ========================================================
+      // Normal card glides smoothly UP out of the viewport
       tl.to(
         mediaWrapperRef.current,
         {
           y: "-105vh",
           ease: "power2.inOut",
-          duration: 0.33,
+          duration: 0.27,
         },
-        0.52
+        0.65
       );
 
-      // Purple showcase section enters smoothly from BELOW the image (y: 100vh -> 0vh)
-      // Never overlaps or fades on top of the image!
+      // Purple showcase section rises smoothly from BELOW the image (y: 100vh -> 0vh)
+      // Always stays below the image, never on top of it!
       tl.fromTo(
         purpleShowcaseRef.current,
         {
@@ -168,9 +170,9 @@ export default function HeroShowreelSection() {
         {
           y: "0vh",
           ease: "power2.inOut",
-          duration: 0.33,
+          duration: 0.27,
         },
-        0.52
+        0.65
       );
     }, trackRef);
 
