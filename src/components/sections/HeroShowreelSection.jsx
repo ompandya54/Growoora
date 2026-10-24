@@ -52,12 +52,11 @@ export default function HeroShowreelSection() {
         0
       );
 
-      // Media wrapper smoothly travels from bottom peek (72vh) to top (0vh) and fills viewport height
+      // Media wrapper smoothly travels from bottom peek (72vh) to top (0vh)
       tl.to(
         mediaWrapperRef.current,
         {
           top: "0vh",
-          height: "100vh",
           y: 0,
           ease: "power2.inOut",
         },
@@ -90,7 +89,7 @@ export default function HeroShowreelSection() {
 
       // ========================================================
       // STAGE 2: HOLD FULL SCREEN VIEW
-      // (Scroll progress 0.38 -> 0.58)
+      // (Scroll progress 0.36 -> 0.52)
       // ========================================================
       tl.to(
         mediaContainerRef.current,
@@ -101,52 +100,86 @@ export default function HeroShowreelSection() {
           borderRadius: "0px",
           ease: "none",
         },
-        0.38
+        0.36
       );
 
       // ========================================================
-      // STAGE 3: SMOOTHLY RETURN TO NORMAL CARD SIZE & POSITION
-      // (Scroll progress 0.58 -> 0.96) - Perfectly symmetric exit!
+      // STAGE 3: SHRINK & FLOAT UPWARDS + PURPLE BACKGROUND REVEAL
+      // (Scroll progress 0.52 -> 0.82)
       // ========================================================
+      // Background transitions from warm cream (#F4F3ED) to signature purple (#A282E8)
+      tl.to(
+        stickyRef.current,
+        {
+          backgroundColor: "#A282E8",
+          ease: "power2.inOut",
+        },
+        0.52
+      );
+
+      // Media wrapper shrinks and travels upwards with rounded bottom corners
+      tl.to(
+        mediaWrapperRef.current,
+        {
+          y: -1100,
+          scale: 0.85,
+          ease: "power2.inOut",
+        },
+        0.52
+      );
+
       tl.to(
         mediaContainerRef.current,
         {
-          width: "90vw",
-          maxWidth: "1280px",
-          height: "56vh",
-          borderRadius: "32px",
+          width: "88vw",
+          maxWidth: "1400px",
+          height: "48vh",
+          borderRadius: "36px",
           ease: "power2.inOut",
         },
-        0.58
+        0.52
       );
 
-      // Section 3 entrance animation when user scrolls down to it
-      if (purpleShowcaseRef.current) {
-        gsap.from(purpleShowcaseRef.current.querySelector(".showcase-content"), {
-          scrollTrigger: {
-            trigger: purpleShowcaseRef.current,
-            start: "top 80%",
-            end: "top 35%",
-            scrub: 0.6,
-          },
-          y: 70,
-          opacity: 0.4,
+      // Media controls fade out during transition
+      tl.to(
+        controlsRef.current,
+        {
+          opacity: 0,
+          pointerEvents: "none",
+          ease: "power1.out",
+        },
+        0.48
+      );
+
+      // ========================================================
+      // STAGE 4: PURPLE SHOWCASE SECTION WITH WHITE TYPOGRAPHY
+      // (Scroll progress 0.65 -> 1.0)
+      // ========================================================
+      tl.fromTo(
+        purpleShowcaseRef.current,
+        {
+          y: 140,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
           ease: "power2.out",
-        });
-      }
+        },
+        0.65
+      );
     }, trackRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <>
-      <section ref={trackRef} className="relative w-full h-[320vh]">
-        {/* Pinned Viewport Container */}
-        <div
-          ref={stickyRef}
-          className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-start bg-[#F4F3ED]"
-        >
+    <section ref={trackRef} className="relative w-full h-[380vh]">
+      {/* Pinned Viewport Container */}
+      <div
+        ref={stickyRef}
+        className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-start transition-colors duration-200 bg-[#F4F3ED]"
+      >
         {/* ==================================================== */}
         {/* TOP HERO HEADLINE: "Extraordinary Digital Experiences" */}
         {/* ==================================================== */}
@@ -233,17 +266,15 @@ export default function HeroShowreelSection() {
             </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    {/* ==================================================== */}
-    {/* SECTION 3: PURPLE SHOWCASE (Authentic 3rd Section)   */}
-    {/* ==================================================== */}
-    <section
-      ref={purpleShowcaseRef}
-      className="relative w-full bg-[#A282E8] py-28 sm:py-36 lg:py-44 px-6 sm:px-12 lg:px-20 z-10 overflow-hidden"
-    >
-      <div className="showcase-content max-w-6xl w-full mx-auto flex flex-col gap-10 sm:gap-14">
+        {/* ==================================================== */}
+        {/* PURPLE SECTION CONTENT: Bold Statement & Brand Logos  */}
+        {/* ==================================================== */}
+        <div
+          ref={purpleShowcaseRef}
+          className="absolute inset-0 z-30 flex flex-col justify-center items-center px-6 sm:px-12 lg:px-20 opacity-0 pointer-events-none will-change-transform"
+        >
+          <div className="max-w-6xl w-full mx-auto flex flex-col gap-10 sm:gap-14 pt-20 pointer-events-auto">
             {/* White Headline */}
             <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.3rem] font-bold tracking-[-0.035em] leading-[1.04] text-white select-none text-left">
               We design, build and ship world-class digital products for forward-thinking brands.
@@ -357,7 +388,8 @@ export default function HeroShowreelSection() {
               </div>
             </div>
           </div>
-        </section>
-      </>
-    );
-  }
+        </div>
+      </div>
+    </section>
+  );
+}
