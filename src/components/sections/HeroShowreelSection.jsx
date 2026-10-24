@@ -52,24 +52,29 @@ export default function HeroShowreelSection() {
         0
       );
 
-      // Media wrapper smoothly travels from bottom peek (72vh) to top (0vh)
+      // Media wrapper smoothly travels from bottom peek (72vh) to top (0vh),
+      // and padding collapses from side gutters to 0px (expanding the container to 100vw full width)
       tl.to(
         mediaWrapperRef.current,
         {
           top: "0vh",
+          paddingLeft: "0px",
+          paddingRight: "0px",
           y: 0,
           ease: "power2.inOut",
         },
         0
       );
 
-      // Media container expands to full bleed 100vw x 100vh with 0 border radius
+      // Media container expands vertically to 100vh and rounds down corners to 0px
       tl.to(
         mediaContainerRef.current,
         {
-          width: "100vw",
+          maxWidth: "100%",
           height: "100vh",
+          maxHeight: "100vh",
           borderRadius: "0px",
+          boxShadow: "0 0 0 rgba(0,0,0,0)",
           ease: "power2.inOut",
         },
         0
@@ -83,22 +88,34 @@ export default function HeroShowreelSection() {
           scale: 0.95,
           ease: "power1.out",
         },
-        0.15
+        0.12
       );
 
       // ========================================================
       // STAGE 2: HOLD FULL SCREEN VIEW
-      // (Scroll progress 0.36 -> 0.52)
+      // (Scroll progress 0.30 -> 0.52)
       // ========================================================
+      tl.to(
+        mediaWrapperRef.current,
+        {
+          top: "0vh",
+          paddingLeft: "0px",
+          paddingRight: "0px",
+          ease: "none",
+        },
+        0.30
+      );
+
       tl.to(
         mediaContainerRef.current,
         {
-          width: "100vw",
+          maxWidth: "100%",
           height: "100vh",
+          maxHeight: "100vh",
           borderRadius: "0px",
           ease: "none",
         },
-        0.36
+        0.30
       );
 
       // ========================================================
@@ -120,7 +137,9 @@ export default function HeroShowreelSection() {
         mediaWrapperRef.current,
         {
           y: -1100,
-          scale: 0.85,
+          scale: 0.88,
+          paddingLeft: "56px",
+          paddingRight: "56px",
           ease: "power2.inOut",
         },
         0.52
@@ -129,7 +148,7 @@ export default function HeroShowreelSection() {
       tl.to(
         mediaContainerRef.current,
         {
-          width: "88vw",
+          maxWidth: "1400px",
           height: "48vh",
           borderRadius: "36px",
           ease: "power2.inOut",
@@ -182,25 +201,25 @@ export default function HeroShowreelSection() {
         {/* ==================================================== */}
         <div
           ref={heroHeadingRef}
-          className="relative w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-14 pt-28 sm:pt-32 z-10 pointer-events-none select-none will-change-transform"
+          className="relative w-full max-w-[1880px] mx-auto px-6 sm:px-10 md:px-12 lg:px-16 xl:px-20 pt-28 sm:pt-32 lg:pt-36 z-10 pointer-events-none select-none will-change-transform"
         >
-          <h1 className="text-[11.8vw] sm:text-[9.8vw] md:text-[8.4vw] lg:text-[7.4vw] xl:text-[8.3rem] font-extrabold tracking-[-0.04em] leading-[0.88] text-[#101E16] text-left">
-            <span className="block">Extraordinary</span>
-            <span className="block">Digital Experiences</span>
+          <h1 className="text-[clamp(2.75rem,7.8vw,9.6rem)] font-extrabold tracking-[-0.04em] leading-[0.88] text-[#0F1D07] text-left">
+            <span className="block whitespace-nowrap">Extraordinary</span>
+            <span className="block whitespace-nowrap">Digital Experiences</span>
           </h1>
         </div>
 
         {/* ==================================================== */}
         {/* SHOWREEL MEDIA: Starts at 72vh (peeking below text), */}
-        {/* expands to full screen (100vw x 100vh), then shrinks */}
+        {/* expands to full screen (100% x 100vh), then shrinks  */}
         {/* ==================================================== */}
         <div
           ref={mediaWrapperRef}
-          className="absolute inset-x-0 top-[72vh] flex items-center justify-center z-20 pointer-events-auto will-change-transform"
+          className="absolute inset-x-0 top-[72vh] px-4 sm:px-8 lg:px-14 flex items-center justify-center z-20 pointer-events-auto will-change-transform"
         >
           <div
             ref={mediaContainerRef}
-            className="relative overflow-hidden w-[90vw] sm:w-[92vw] max-w-7xl h-[52vh] sm:h-[58vh] rounded-[28px] sm:rounded-[36px] shadow-2xl transition-all will-change-transform"
+            className="relative overflow-hidden w-full max-w-[1780px] h-[52vh] sm:h-[58vh] rounded-[24px] sm:rounded-[36px] shadow-2xl will-change-transform"
           >
             {/* Showreel Visual Asset */}
             <Image

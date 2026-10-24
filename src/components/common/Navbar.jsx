@@ -32,7 +32,7 @@ export default function Navbar() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 py-4 sm:py-5 transition-all duration-300 pointer-events-none">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 flex items-center justify-between">
+      <div className="w-full max-w-[1880px] mx-auto px-6 sm:px-10 md:px-12 lg:px-16 xl:px-20 flex items-center justify-between">
         {/* Left: Brand Logo */}
         <a
           href="#"
