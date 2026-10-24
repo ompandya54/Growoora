@@ -38,35 +38,36 @@ export default function HeroShowreelSection() {
       });
 
       // ========================================================
-      // STAGE 1: EXPAND FROM BELOW HEADLINE TO FULL SCREEN
-      // (Scroll progress 0.0 -> 0.36)
+      // STAGE 1: EXPAND FROM BOTTOM CARD TO 100% FULL SCREEN
+      // (Scroll progress 0.0 -> 0.35)
       // ========================================================
       // Headline scrolls up smoothly and fades out
       tl.to(
         heroHeadingRef.current,
         {
-          y: -260,
+          y: -240,
           opacity: 0,
           ease: "power2.inOut",
+          duration: 0.30,
         },
         0
       );
 
-      // Media wrapper smoothly travels from bottom peek (72vh) to top (0vh),
-      // and padding collapses from side gutters to 0px (expanding the container to 100vw full width)
+      // Padding collapses so video reaches 100vw width and touches edges
       tl.to(
         mediaWrapperRef.current,
         {
-          top: "0vh",
           paddingLeft: "0px",
           paddingRight: "0px",
+          paddingBottom: "0px",
           y: 0,
           ease: "power2.inOut",
+          duration: 0.35,
         },
         0
       );
 
-      // Media container expands vertically to 100vh and rounds down corners to 0px
+      // Media container expands upward from bottom to full screen height (100vh) & width with 0px corners
       tl.to(
         mediaContainerRef.current,
         {
@@ -76,6 +77,7 @@ export default function HeroShowreelSection() {
           borderRadius: "0px",
           boxShadow: "0 0 0 rgba(0,0,0,0)",
           ease: "power2.inOut",
+          duration: 0.35,
         },
         0
       );
@@ -84,43 +86,24 @@ export default function HeroShowreelSection() {
       tl.to(
         seeShowreelBadgeRef.current,
         {
-          opacity: 0.9,
+          opacity: 0.95,
           scale: 0.95,
           ease: "power1.out",
+          duration: 0.15,
         },
-        0.12
+        0.10
       );
 
       // ========================================================
       // STAGE 2: HOLD FULL SCREEN VIEW
-      // (Scroll progress 0.30 -> 0.52)
+      // (Scroll progress 0.35 -> 0.52)
       // ========================================================
-      tl.to(
-        mediaWrapperRef.current,
-        {
-          top: "0vh",
-          paddingLeft: "0px",
-          paddingRight: "0px",
-          ease: "none",
-        },
-        0.30
-      );
-
-      tl.to(
-        mediaContainerRef.current,
-        {
-          maxWidth: "100%",
-          height: "100vh",
-          maxHeight: "100vh",
-          borderRadius: "0px",
-          ease: "none",
-        },
-        0.30
-      );
+      // Pure hold period so user can enjoy full-screen showreel
+      tl.to({}, { duration: 0.17 }, 0.35);
 
       // ========================================================
       // STAGE 3: SHRINK & FLOAT UPWARDS + PURPLE BACKGROUND REVEAL
-      // (Scroll progress 0.52 -> 0.82)
+      // (Scroll progress 0.52 -> 0.78)
       // ========================================================
       // Background transitions from warm cream (#F4F3ED) to signature purple (#A282E8)
       tl.to(
@@ -128,23 +111,49 @@ export default function HeroShowreelSection() {
         {
           backgroundColor: "#A282E8",
           ease: "power2.inOut",
+          duration: 0.24,
         },
         0.52
       );
 
-      // Media wrapper shrinks and travels upwards with rounded bottom corners
+      // Media controls & badge fade out during transition
+      tl.to(
+        controlsRef.current,
+        {
+          opacity: 0,
+          pointerEvents: "none",
+          ease: "power1.out",
+          duration: 0.08,
+        },
+        0.48
+      );
+
+      tl.to(
+        seeShowreelBadgeRef.current,
+        {
+          opacity: 0,
+          pointerEvents: "none",
+          ease: "power1.out",
+          duration: 0.08,
+        },
+        0.48
+      );
+
+      // Media wrapper floats upwards
       tl.to(
         mediaWrapperRef.current,
         {
-          y: -1100,
+          y: "-58vh",
           scale: 0.88,
           paddingLeft: "56px",
           paddingRight: "56px",
           ease: "power2.inOut",
+          duration: 0.26,
         },
         0.52
       );
 
+      // Media container shrinks into rounded showcase card
       tl.to(
         mediaContainerRef.current,
         {
@@ -152,35 +161,26 @@ export default function HeroShowreelSection() {
           height: "48vh",
           borderRadius: "36px",
           ease: "power2.inOut",
+          duration: 0.26,
         },
         0.52
       );
 
-      // Media controls fade out during transition
-      tl.to(
-        controlsRef.current,
-        {
-          opacity: 0,
-          pointerEvents: "none",
-          ease: "power1.out",
-        },
-        0.48
-      );
-
       // ========================================================
       // STAGE 4: PURPLE SHOWCASE SECTION WITH WHITE TYPOGRAPHY
-      // (Scroll progress 0.65 -> 1.0)
+      // (Scroll progress 0.65 -> 0.95)
       // ========================================================
       tl.fromTo(
         purpleShowcaseRef.current,
         {
-          y: 140,
+          y: 120,
           opacity: 0,
         },
         {
           y: 0,
           opacity: 1,
           ease: "power2.out",
+          duration: 0.28,
         },
         0.65
       );
@@ -194,7 +194,7 @@ export default function HeroShowreelSection() {
       {/* Pinned Viewport Container */}
       <div
         ref={stickyRef}
-        className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-start transition-colors duration-200 bg-[#F4F3ED]"
+        className="sticky top-0 h-screen h-[100dvh] w-full overflow-hidden flex flex-col justify-start transition-colors duration-200 bg-[#F4F3ED]"
       >
         {/* ==================================================== */}
         {/* TOP HERO HEADLINE: "Extraordinary Digital Experiences" */}
@@ -210,16 +210,16 @@ export default function HeroShowreelSection() {
         </div>
 
         {/* ==================================================== */}
-        {/* SHOWREEL MEDIA: Starts at 72vh (peeking below text), */}
-        {/* expands to full screen (100% x 100vh), then shrinks  */}
+        {/* SHOWREEL MEDIA: Anchored at bottom, expands to full   */}
+        {/* screen (100% width x 100vh height), then shrinks     */}
         {/* ==================================================== */}
         <div
           ref={mediaWrapperRef}
-          className="absolute inset-x-0 top-[72vh] px-4 sm:px-8 lg:px-14 flex items-center justify-center z-20 pointer-events-auto will-change-transform"
+          className="absolute inset-x-0 bottom-0 pb-3 sm:pb-4 lg:pb-5 px-4 sm:px-8 lg:px-14 flex items-end justify-center z-20 pointer-events-auto will-change-transform"
         >
           <div
             ref={mediaContainerRef}
-            className="relative overflow-hidden w-full max-w-[1780px] h-[52vh] sm:h-[58vh] rounded-[24px] sm:rounded-[36px] shadow-2xl will-change-transform"
+            className="relative overflow-hidden w-full max-w-[1780px] h-[28vh] sm:h-[32vh] lg:h-[34vh] rounded-[24px] sm:rounded-[36px] shadow-2xl will-change-transform"
           >
             {/* Showreel Visual Asset */}
             <Image
