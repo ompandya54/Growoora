@@ -53,11 +53,15 @@ export default function HeroShowreelSection() {
         0
       );
 
-      // Media wrapper smoothly travels from bottom peek (72vh) to top (0vh)
+      // Media wrapper smoothly travels from bottom peek (72vh) to top (0vh),
+      // and padding collapses to 0px, maxWidth expands to 100% (reaching 100vw full width)
       tl.to(
         mediaWrapperRef.current,
         {
           top: "0vh",
+          paddingLeft: "0px",
+          paddingRight: "0px",
+          maxWidth: "100%",
           y: 0,
           ease: "power2.inOut",
           duration: 0.35,
@@ -69,8 +73,8 @@ export default function HeroShowreelSection() {
       tl.to(
         mediaContainerRef.current,
         {
-          width: "100vw",
-          maxWidth: "100vw",
+          width: "100%",
+          maxWidth: "100%",
           height: "100vh",
           borderRadius: "0px",
           ease: "power2.inOut",
@@ -139,8 +143,8 @@ export default function HeroShowreelSection() {
       tl.to(
         mediaContainerRef.current,
         {
-          width: "90vw",
-          maxWidth: "1280px",
+          width: "100%",
+          maxWidth: "100%",
           height: "52vh",
           borderRadius: "32px",
           ease: "power2.inOut",
@@ -153,6 +157,9 @@ export default function HeroShowreelSection() {
       tl.to(
         mediaWrapperRef.current,
         {
+          paddingLeft: "48px",
+          paddingRight: "48px",
+          maxWidth: "1880px",
           y: "-105vh",
           ease: "power2.inOut",
           duration: 0.35,
@@ -199,7 +206,7 @@ export default function HeroShowreelSection() {
           ref={heroHeadingRef}
           className="relative w-full max-w-[1880px] mx-auto px-6 sm:px-10 md:px-12 lg:px-16 xl:px-20 pt-28 sm:pt-32 lg:pt-36 z-10 pointer-events-none select-none will-change-transform"
         >
-          <h1 className="text-[clamp(2.75rem,7.8vw,9.6rem)] font-extrabold tracking-[-0.04em] leading-[0.88] text-[#0F1D07] text-left">
+          <h1 className="text-[clamp(2.75rem,7.8vw,9.6rem)] font-bold tracking-[-0.035em] leading-[0.88] text-[#0F1D07] text-left">
             <span className="block whitespace-nowrap">Extraordinary</span>
             <span className="block whitespace-nowrap">Digital Experiences</span>
           </h1>
@@ -211,11 +218,11 @@ export default function HeroShowreelSection() {
         {/* ==================================================== */}
         <div
           ref={mediaWrapperRef}
-          className="absolute inset-x-0 top-[72vh] flex items-center justify-center z-20 pointer-events-auto will-change-transform"
+          className="absolute inset-x-0 top-[72vh] w-full max-w-[1880px] mx-auto px-6 sm:px-10 md:px-12 lg:px-16 xl:px-20 flex items-center justify-center z-20 pointer-events-auto will-change-transform"
         >
           <div
             ref={mediaContainerRef}
-            className="relative overflow-hidden w-[90vw] sm:w-[92vw] max-w-7xl h-[52vh] sm:h-[58vh] rounded-[28px] sm:rounded-[36px] shadow-2xl will-change-transform"
+            className="relative overflow-hidden w-full h-[52vh] sm:h-[58vh] rounded-[28px] sm:rounded-[36px] shadow-2xl will-change-transform"
           >
             {/* Showreel Visual Asset */}
             <Image
