@@ -17,7 +17,6 @@ export default function HeroShowreelSection() {
   const mediaContainerRef = useRef(null);
   const purpleShowcaseRef = useRef(null);
   const controlsRef = useRef(null);
-  const seeShowreelBadgeRef = useRef(null);
   const videoRef = useRef(null);
 
   const [isPlaying, setIsPlaying] = useState(true);
@@ -111,17 +110,7 @@ export default function HeroShowreelSection() {
         0
       );
 
-      // Badge scales subtly into place
-      tl.to(
-        seeShowreelBadgeRef.current,
-        {
-          opacity: 0.9,
-          scale: 0.95,
-          ease: "power1.out",
-          duration: 0.15,
-        },
-        0.10
-      );
+
 
       // ========================================================
       // STAGE 2: HOLD FULL SCREEN VIEW
@@ -156,16 +145,7 @@ export default function HeroShowreelSection() {
         0.50
       );
 
-      tl.to(
-        seeShowreelBadgeRef.current,
-        {
-          opacity: 0,
-          pointerEvents: "none",
-          ease: "power1.out",
-          duration: 0.10,
-        },
-        0.50
-      );
+
 
       const getInitialWidth = () => {
         if (typeof window === "undefined") return "1720px";
@@ -281,27 +261,7 @@ export default function HeroShowreelSection() {
             {/* Subtle Contrast Overlay */}
             <div className="absolute inset-0 bg-black/10 pointer-events-none" />
 
-            {/* Floating Center "See Showreel" Capsule Badge */}
-            <div
-              ref={seeShowreelBadgeRef}
-              className="absolute inset-0 flex items-center justify-center pointer-events-none"
-            >
-              <button
-                type="button"
-                onClick={handleTogglePlay}
-                aria-label={isPlaying ? "Pause Showreel" : "Play Showreel"}
-                className="px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-white/90 backdrop-blur-md border border-white/60 shadow-xl flex items-center gap-3 text-xs sm:text-sm font-semibold text-[#111817] tracking-wide pointer-events-auto cursor-pointer hover:scale-105 active:scale-95 transition-all"
-              >
-                <span className="w-6 h-6 rounded-full bg-[#111817] text-white flex items-center justify-center">
-                  {isPlaying ? (
-                    <Pause className="w-3 h-3 fill-white" />
-                  ) : (
-                    <Play className="w-3 h-3 fill-white ml-0.5" />
-                  )}
-                </span>
-                <span>{isPlaying ? "Pause Showreel" : "Play Showreel"}</span>
-              </button>
-            </div>
+
 
             {/* Bottom-Right Video / Audio Control Buttons */}
             <div
