@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
-import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Play, Pause, Volume2, VolumeX } from "lucide-react";
@@ -19,9 +18,42 @@ export default function HeroShowreelSection() {
   const purpleShowcaseRef = useRef(null);
   const controlsRef = useRef(null);
   const seeShowreelBadgeRef = useRef(null);
+  const videoRef = useRef(null);
 
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
+
+  // Sync video play/pause with user actions
+  const handleTogglePlay = () => {
+    if (videoRef.current) {
+      if (videoRef.current.paused) {
+        videoRef.current.play().catch(() => {});
+        setIsPlaying(true);
+      } else {
+        videoRef.current.pause();
+        setIsPlaying(false);
+      }
+    }
+  };
+
+  // Sync mute/unmute
+  const handleToggleMute = () => {
+    if (videoRef.current) {
+      const nextMuted = !videoRef.current.muted;
+      videoRef.current.muted = nextMuted;
+      setIsMuted(nextMuted);
+    }
+  };
+
+  // Safe autoplay on mount
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.muted = isMuted;
+      videoRef.current.play().catch(() => {
+        // Handled if browser policies block unmuted/early autoplay
+      });
+    }
+  }, []);
 
   useEffect(() => {
     if (!trackRef.current || !stickyRef.current) return;
@@ -228,15 +260,23 @@ export default function HeroShowreelSection() {
             ref={mediaContainerRef}
             className="hero-media-container relative overflow-hidden h-[52vh] sm:h-[58vh] rounded-[28px] sm:rounded-[36px] shadow-2xl will-change-transform"
           >
-            {/* Showreel Visual Asset */}
-            <Image
-              src="/images/showreel.jpg"
-              alt="Growoora Creative Showreel"
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover object-center transform scale-105 select-none"
-            />
+            {/* Showreel Video Asset - Continuous Looping */}
+            <video
+              ref={videoRef}
+              autoPlay
+              loop
+              muted={isMuted}
+              playsInline
+              preload="auto"
+              poster="/images/showreel.jpg"
+              onPlay={() => setIsPlaying(true)}
+              onPause={() => setIsPlaying(false)}
+              className="w-full h-full object-cover object-center select-none"
+            >
+              <source src="/Growoora.mp4" type="video/mp4" />
+              <source src="/growoora.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
 
             {/* Subtle Contrast Overlay */}
             <div className="absolute inset-0 bg-black/10 pointer-events-none" />
@@ -246,12 +286,21 @@ export default function HeroShowreelSection() {
               ref={seeShowreelBadgeRef}
               className="absolute inset-0 flex items-center justify-center pointer-events-none"
             >
-              <div className="px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-white/90 backdrop-blur-md border border-white/60 shadow-xl flex items-center gap-3 text-xs sm:text-sm font-semibold text-[#111817] tracking-wide pointer-events-auto cursor-pointer hover:scale-105 transition-all">
+              <button
+                type="button"
+                onClick={handleTogglePlay}
+                aria-label={isPlaying ? "Pause Showreel" : "Play Showreel"}
+                className="px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-white/90 backdrop-blur-md border border-white/60 shadow-xl flex items-center gap-3 text-xs sm:text-sm font-semibold text-[#111817] tracking-wide pointer-events-auto cursor-pointer hover:scale-105 active:scale-95 transition-all"
+              >
                 <span className="w-6 h-6 rounded-full bg-[#111817] text-white flex items-center justify-center">
-                  <Play className="w-3 h-3 fill-white ml-0.5" />
+                  {isPlaying ? (
+                    <Pause className="w-3 h-3 fill-white" />
+                  ) : (
+                    <Play className="w-3 h-3 fill-white ml-0.5" />
+                  )}
                 </span>
-                <span>See Showreel</span>
-              </div>
+                <span>{isPlaying ? "Pause Showreel" : "Play Showreel"}</span>
+              </button>
             </div>
 
             {/* Bottom-Right Video / Audio Control Buttons */}
@@ -262,9 +311,9 @@ export default function HeroShowreelSection() {
               {/* Play / Pause Toggle */}
               <button
                 type="button"
-                onClick={() => setIsPlaying(!isPlaying)}
+                onClick={handleTogglePlay}
                 aria-label={isPlaying ? "Pause Showreel" : "Play Showreel"}
-                className="w-11 h-11 rounded-full bg-black/50 hover:bg-black/75 backdrop-blur-md border border-white/20 text-white flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-lg cursor-pointer"
+                className="w-11 h-11 rounded-full bg-black/50 hover:bg-black/75 backdrop-blur-md border border-white/20 text-white flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 shadow-lg cursor-pointer"
               >
                 {isPlaying ? (
                   <Pause className="w-4 h-4 fill-white text-white" />
@@ -276,9 +325,9 @@ export default function HeroShowreelSection() {
               {/* Sound Mute / Unmute Toggle */}
               <button
                 type="button"
-                onClick={() => setIsMuted(!isMuted)}
+                onClick={handleToggleMute}
                 aria-label={isMuted ? "Unmute Showreel" : "Mute Showreel"}
-                className="w-11 h-11 rounded-full bg-black/50 hover:bg-black/75 backdrop-blur-md border border-white/20 text-white flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-lg cursor-pointer"
+                className="w-11 h-11 rounded-full bg-black/50 hover:bg-black/75 backdrop-blur-md border border-white/20 text-white flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 shadow-lg cursor-pointer"
               >
                 {isMuted ? (
                   <VolumeX className="w-4 h-4 text-white" />
