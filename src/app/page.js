@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import LoadingScreen from "@/components/common/LoadingScreen";
 import Navbar from "@/components/common/Navbar";
 import HeroShowreelSection from "@/components/sections/HeroShowreelSection";
+import FeaturedWorkSection from "@/components/sections/FeaturedWorkSection";
 import ServicesSection from "@/components/sections/ServicesSection";
 import GrowthEngineSection from "@/components/sections/GrowthEngineSection";
 import ProjectsSection from "@/components/sections/ProjectsSection";
@@ -65,6 +66,7 @@ export default function Home() {
         <Navbar />
         <main className="flex-1">
           <HeroShowreelSection />
+          <FeaturedWorkSection />
           <ServicesSection />
           <GrowthEngineSection />
           <ProjectsSection />
