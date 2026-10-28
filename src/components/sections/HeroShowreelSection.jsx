@@ -238,7 +238,7 @@ export default function HeroShowreelSection() {
         >
           <div
             ref={mediaContainerRef}
-            className="hero-media-container relative overflow-hidden h-[52vh] sm:h-[58vh] rounded-[28px] sm:rounded-[36px] shadow-2xl will-change-transform"
+            className="hero-media-container relative overflow-hidden h-[52vh] sm:h-[58vh] rounded-[28px] sm:rounded-[36px] shadow-2xl will-change-transform isolate [mask-image:radial-gradient(white,black)]"
           >
             {/* Showreel Video Asset - Continuous Looping */}
             <video

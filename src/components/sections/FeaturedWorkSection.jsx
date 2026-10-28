@@ -150,7 +150,7 @@ export default function FeaturedWorkSection() {
         {/* ======================================================== */}
         <div
           ref={piqueTrackRef}
-          className="relative rounded-[28px] sm:rounded-[38px] md:rounded-[44px] overflow-hidden min-h-[960px] sm:min-h-[1100px] lg:min-h-[1240px] shadow-2xl bg-[#EBE9E1]"
+          className="relative rounded-[28px] sm:rounded-[38px] md:rounded-[44px] overflow-hidden min-h-[960px] sm:min-h-[1100px] lg:min-h-[1240px] shadow-2xl bg-[#EBE9E1] isolate [mask-image:radial-gradient(white,black)]"
         >
           {/* Background Layer: House & Trees Landscape */}
           <div
@@ -182,9 +182,9 @@ export default function FeaturedWorkSection() {
             ref={piqueInnerCardRef}
             className="relative z-10 w-full max-w-4xl lg:max-w-5xl mx-auto pt-16 sm:pt-24 pb-24 px-4 sm:px-6 will-change-transform"
           >
-            <div className="rounded-[24px] sm:rounded-[32px] overflow-hidden bg-[#162026] text-white shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] border border-white/15">
+            <div className="rounded-[24px] sm:rounded-[32px] overflow-hidden bg-[#162026] text-white shadow-[0_25px_50px_-12px_rgba(0,0,0,0.4)] border border-white/15 isolate [mask-image:radial-gradient(white,black)]">
               {/* Top Navigation Bar Inside the PIQUE Frame */}
-              <div className="flex items-center justify-between px-6 sm:px-8 py-3.5 bg-[#10171B]/95 backdrop-blur-md border-b border-white/10 select-none">
+              <div className="flex items-center justify-between px-6 sm:px-8 py-3.5 bg-[#10171B] border-b border-white/10 select-none rounded-t-[23px] sm:rounded-t-[31px]">
                 {/* Left Pill: Menu */}
                 <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[11px] font-mono font-bold tracking-widest text-white/90">
                   <span className="w-1.5 h-1.5 rounded-full bg-white" />
@@ -348,7 +348,7 @@ export default function FeaturedWorkSection() {
           {/* ------------------------------------------------------ */}
           {/* LEFT CARD: SUSSEX TAPS (Smooth Architectural Video)    */}
           {/* ------------------------------------------------------ */}
-          <div className="group relative rounded-[28px] sm:rounded-[36px] md:rounded-[44px] overflow-hidden h-[540px] sm:h-[640px] lg:h-[720px] bg-[#121212] shadow-xl cursor-pointer">
+          <div className="group relative rounded-[28px] sm:rounded-[36px] md:rounded-[44px] overflow-hidden h-[540px] sm:h-[640px] lg:h-[720px] bg-[#121212] shadow-xl cursor-pointer isolate [mask-image:radial-gradient(white,black)]">
             {/* Full-Bleed High-Definition Looping Video */}
             <video
               ref={sussexVideoRef}
@@ -383,7 +383,7 @@ export default function FeaturedWorkSection() {
           {/* ------------------------------------------------------ */}
           {/* RIGHT CARD: CHALEIT (Slow BG Image + Fast Moving Card) */}
           {/* ------------------------------------------------------ */}
-          <div className="group relative rounded-[28px] sm:rounded-[36px] md:rounded-[44px] overflow-hidden h-[540px] sm:h-[640px] lg:h-[720px] bg-[#3B3A36] shadow-xl cursor-pointer">
+          <div className="group relative rounded-[28px] sm:rounded-[36px] md:rounded-[44px] overflow-hidden h-[540px] sm:h-[640px] lg:h-[720px] bg-[#3B3A36] shadow-xl cursor-pointer isolate [mask-image:radial-gradient(white,black)]">
             {/* Background Layer: Slow Parallax Movement */}
             <div
               ref={chaleitBgRef}
@@ -410,7 +410,7 @@ export default function FeaturedWorkSection() {
             {/* Floating Mobile / App Preview Card (FAST PARALLAX) */}
             <div
               ref={chaleitCardRef}
-              className="absolute right-6 sm:right-10 md:right-14 top-[22%] w-[270px] sm:w-[310px] md:w-[350px] rounded-[26px] sm:rounded-[30px] bg-[#0C2E35] border border-white/20 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)] p-6 text-white z-20 will-change-transform select-none"
+              className="absolute right-6 sm:right-10 md:right-14 top-[22%] w-[270px] sm:w-[310px] md:w-[350px] rounded-[26px] sm:rounded-[30px] bg-[#0C2E35] border border-white/20 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] p-6 text-white z-20 will-change-transform select-none isolate [mask-image:radial-gradient(white,black)]"
             >
               {/* Header inside phone mockup */}
               <div className="flex items-center justify-between pb-5 border-b border-white/10">
