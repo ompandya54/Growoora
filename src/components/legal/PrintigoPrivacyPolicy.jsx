@@ -356,8 +356,8 @@ export default function PrintigoPrivacyPolicy() {
                   </div>
                   <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed mb-4">
                     To request complete account and data deletion, email us at{" "}
-                    <a href="mailto:growoora@gmail.com" className="text-[#8FE63B] font-mono underline hover:text-white transition-colors">
-                      growoora@gmail.com
+                    <a href="mailto:growoora.info@gmail.com" className="text-[#8FE63B] font-mono underline hover:text-white transition-colors">
+                      growoora.info@gmail.com
                     </a>{" "}
                     with the subject line <strong className="text-white">&ldquo;Account Deletion Request&rdquo;</strong> from your registered account email.
                   </p>
@@ -367,7 +367,7 @@ export default function PrintigoPrivacyPolicy() {
 
                   <div className="mt-4">
                     <a
-                      href="mailto:growoora@gmail.com?subject=Account%20Deletion%20Request"
+                      href="mailto:growoora.info@gmail.com?subject=Account%20Deletion%20Request"
                       className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-[#8FE63B] text-[#111817] hover:bg-[#a6f05b] transition-colors"
                     >
                       <Mail className="w-3.5 h-3.5" />
@@ -449,11 +449,11 @@ export default function PrintigoPrivacyPolicy() {
                   <div className="flex items-center gap-3 text-sm">
                     <span className="w-24 text-zinc-500 font-mono text-xs uppercase">Deletion:</span>
                     <a
-                      href="mailto:growoora@gmail.com"
+                      href="mailto:growoora.info@gmail.com"
                       className="text-emerald-700 hover:text-emerald-800 font-medium underline flex items-center gap-1.5"
                     >
                       <Mail className="w-3.5 h-3.5" />
-                      growoora@gmail.com
+                      growoora.info@gmail.com
                     </a>
                   </div>
                 </div>
