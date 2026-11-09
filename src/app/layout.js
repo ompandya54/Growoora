@@ -1,19 +1,5 @@
-import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import CustomCursor from "@/components/common/CustomCursor";
-
-const jakartaSans = Plus_Jakarta_Sans({
-  variable: "--font-sans",
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["400", "500", "600", "700", "800"],
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-mono",
-  subsets: ["latin"],
-  display: "swap",
-});
 
 export const metadata = {
   title: "Growoora — Creative Technology & Digital Growth Studio",
@@ -34,9 +20,17 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${jakartaSans.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className="h-full antialiased"
       suppressHydrationWarning
     >
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body 
         className="min-h-full flex flex-col font-sans bg-[#F8FAF7] text-[#111817] selection:bg-[#8FE63B] selection:text-[#111817]"
         suppressHydrationWarning
